@@ -1,0 +1,443 @@
+:root {
+  --primary: #4a5d43; /* Olive/Sage Green */
+  --primary-dark: #3a4b34;
+  --gold: #d4af37;
+  --bg-color: #fcfbfa; /* Off-white / cream background */
+  --text-dark: #2c2c2c;
+  --text-light: #f5f5f5;
+  --font-heading: 'Cinzel', serif;
+  --font-body: 'Montserrat', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-color);
+  color: var(--text-dark);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+}
+
+body.intro-active {
+  overflow: hidden; /* Prevent scrolling during video */
+}
+
+/* Intro Overlay Styles */
+.intro-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100dvh;
+  background: var(--bg-color); 
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.intro-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.start-btn {
+  position: relative;
+  z-index: 10000;
+  padding: 0.8rem 2rem; /* Reduced size */
+  font-size: 1.1rem; /* Smaller font */
+  background: transparent; /* Makes it essentially empty inside */
+  color: var(--primary); /* Colored text */
+  border: 2px solid var(--primary); /* Outlined style */
+  border-radius: 5px;
+  font-family: var(--font-heading);
+  cursor: pointer;
+  box-shadow: none; /* Removing shadow for clean outline look */
+  transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.start-btn:hover {
+  transform: scale(1.05);
+  background: var(--primary);
+  color: white;
+}
+
+main {
+  position: relative;
+  width: 100%;
+}
+
+.screen-section {
+  position: relative;
+  width: 100%;
+  height: 100dvh; /* Exact viewport height for mobile devices to prevent overflow */
+  overflow: hidden;
+}
+
+.media-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--primary-dark);
+}
+
+.main-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+/* Floating Flower Petal Styles */
+.petal {
+  position: absolute;
+  background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
+  border-radius: 50% 0 50% 50%;
+  opacity: 0.8;
+  z-index: 3;
+  pointer-events: none;
+  animation: float-petal linear infinite;
+}
+
+@keyframes float-petal {
+  0% {
+    transform: translateY(-10vh) rotate(0deg) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg) scale(0.5);
+    opacity: 0;
+  }
+}
+
+.standard-section {
+  height: auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10vh 5vw;
+  background: var(--bg-color);
+}
+
+.relative-section {
+  position: relative;
+  background: var(--primary);
+  color: var(--text-light);
+  overflow: hidden;
+}
+
+.gold-text {
+  color: var(--gold);
+}
+
+.title {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  font-style: italic;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.date-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  background: var(--bg-color); 
+  height: 100dvh;
+  overflow: hidden;
+}
+
+.date-header {
+  color: var(--gold);
+  z-index: 5;
+  margin-bottom: 0.5rem;
+  font-size: clamp(1.5rem, 6vw, 2.2rem);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.date-subtitle {
+  color: #fff;
+  z-index: 5;
+  margin-bottom: 0.5rem; /* Reduces default heavy bottom margin */
+}
+
+.green-path {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; /* Cover entire section height */
+  background: var(--primary);
+  /* Angles down to 65% height, then drops straight down to fill the bottom white space */
+  clip-path: polygon(
+  25% 0%, 
+  75% 0%, 
+  100% 65%, 
+  100% 85%, 
+  0% 85%, 
+  0% 65%
+);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 35vh; /* Pushed significantly down from top to be close to the rose */
+  z-index: 1;
+}
+
+.circles-wrapper {
+  display: flex;
+  gap: 5vw;
+  margin-top: 3vh; /* drastically reduced from 8vh gap */
+  justify-content: center;
+}
+
+.scratch-circle-container {
+  position: relative;
+  width: 20vw;
+  max-width: 85px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px #fff;
+  background: #fdfaf5;
+}
+
+.rose-img {
+  position: absolute;
+  bottom: 4vh; /* Just above the new 85% cut-off gap */
+  left: 50%;
+  transform: translateX(-50%); /* Pre-set center alignment */
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  max-height: 40vh;
+  object-fit: contain;
+  pointer-events: none;
+  z-index: 4;
+  filter: drop-shadow(0 15px 20px rgba(0, 0, 0, 0.4)); /* Added nice shadow effect */
+}
+
+.revealed-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--primary-dark);
+  z-index: 1;
+  border-radius: 50%;
+}
+
+.scratch-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.venue-section {
+  position: relative;
+  height: 100dvh;
+  background: var(--bg-color);
+  overflow: hidden;
+}
+
+.venue-bg-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.bird-animation {
+  position: absolute;
+  top: 10vh;
+  left: 0;
+  width: 100%;
+  height: 40vh;
+  object-fit: contain;
+  pointer-events: none;
+  z-index: 3; /* Higher than background and gradient */
+  opacity: 0.85; /* Soft blend into the background */
+}
+
+.venue-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.1); /* Provide buffer for parallax */
+}
+
+.venue-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent 40%, rgba(0, 0, 0, 0.90) 100%);
+  z-index: 1;
+}
+
+.venue-bottom-content {
+  position: absolute;
+  bottom: 8%;
+  left: 5%;
+  width: 90%;
+  color: white;
+  z-index: 2;
+  text-align: left;
+}
+
+.venue-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  margin-bottom: 0.2rem;
+  color: var(--gold);
+  line-height: 1.1;
+}
+
+.venue-location {
+  font-size: clamp(1rem, 4vw, 1.3rem);
+  margin-bottom: 0.2rem;
+  font-weight: 300;
+  color: #fff;
+}
+
+.venue-timing {
+  font-size: clamp(0.9rem, 3.5vw, 1.2rem);
+  font-weight: 300;
+  color: #ddd;
+}
+
+.final-section {
+  background: var(--bg-color);
+  justify-content: flex-end;
+  padding-bottom: 0;
+}
+
+.final-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  height: 100vh;
+  justify-content: center;
+}
+
+.finale-title {
+  color: var(--primary);
+  margin-bottom: 1.5rem;
+  font-size: clamp(1.2rem, 4vw, 2rem);
+  text-transform: none;
+  font-family: var(--font-body);
+  font-weight: 300;
+  text-align: center;
+  max-width: 80%;
+  line-height: 1.4;
+  z-index: 2;
+}
+
+.finale-names {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 8vw, 4rem);
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  z-index: 2;
+}
+
+.heart-icon {
+  color: #db4a39;
+  display: inline-block;
+  animation: heartbeat 1.5s infinite;
+  filter: drop-shadow(0 2px 4px rgba(219, 74, 57, 0.4)); /* Soft red glow */
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  15% { transform: scale(1.3); }
+  30% { transform: scale(1); }
+  45% { transform: scale(1.3); }
+  60% { transform: scale(1); }
+}
+
+.hub-image {
+  position: absolute;
+  bottom: -10vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 600px;
+  opacity: 0;
+}
